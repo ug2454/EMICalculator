@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LegendEntry;
@@ -97,7 +98,7 @@ public class ResultActivity extends AppCompatActivity {
 
         setLegends();
 
-        pieChart.animate();
+        pieChart.animateXY(1000,1000);
 
         emiTextView.setText(emi1[0]);
         interestAmountTextView.setText(interest1[0]);
