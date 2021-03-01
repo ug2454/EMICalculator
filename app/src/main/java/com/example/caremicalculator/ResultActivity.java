@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LegendEntry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -24,7 +26,7 @@ public class ResultActivity extends AppCompatActivity {
     PieData pieData;
     PieDataSet pieDataSet;
     ArrayList pieEntries;
-    ArrayList PieEntryLabels;
+
 
 
     @Override
@@ -69,7 +71,7 @@ public class ResultActivity extends AppCompatActivity {
         pieChart = findViewById(R.id.pieChart);
         pieEntries = new ArrayList<>();
         pieEntries.add(new PieEntry((int) intent.getFloatExtra("interestAmount", 0), Integer.parseInt(String.valueOf((int) intent.getFloatExtra("interestAmount", 0)))));
-        pieEntries.add(new PieEntry((int) intent.getIntExtra("principalAmount", 0), Integer.parseInt(String.valueOf((int) intent.getIntExtra("principalAmount", 0)))));
+        pieEntries.add(new PieEntry(intent.getIntExtra("principalAmount", 0), Integer.parseInt(String.valueOf(intent.getIntExtra("principalAmount", 0)))));
 
         pieDataSet = new PieDataSet(pieEntries, "");
         pieData = new PieData(pieDataSet);
@@ -81,10 +83,12 @@ public class ResultActivity extends AppCompatActivity {
         pieDataSet.setSliceSpace(5f);
         pieChart.getDescription().setText("LOAN PAYMENT CHART");
         pieChart.getDescription().setTextColor(Color.YELLOW);
-        pieChart.getDescription().setTextSize(15);
+        pieChart.getDescription().setTextSize(12);
         pieChart.setCenterText(totalPayment1[0]);
+        Legend legend = pieChart.getLegend();
+        legend.setEnabled(true);
 
-
+        setLegends();
 
         pieChart.animate();
 
@@ -93,4 +97,25 @@ public class ResultActivity extends AppCompatActivity {
         totalPaymentTextView.setText(totalPayment1[0]);
     }
 
+    public void setLegends() {
+
+        Legend l = pieChart.getLegend();
+
+        l.getEntries();
+
+        l.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+
+        l.setYEntrySpace(10f);
+
+        l.setWordWrapEnabled(true);
+
+        LegendEntry l1 = new LegendEntry("Principal Loan Amount", Legend.LegendForm.CIRCLE, 10f, 2f, null, Color.YELLOW);
+        LegendEntry l2 = new LegendEntry("Interest Payable", Legend.LegendForm.CIRCLE, 10f, 2f, null, Color.GREEN);
+
+        l.setCustom(new LegendEntry[]{l1, l2});
+        l.setTextColor(Color.WHITE);
+
+        l.setEnabled(true);
+
+    }
 }
