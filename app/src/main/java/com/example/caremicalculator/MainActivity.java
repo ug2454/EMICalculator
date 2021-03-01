@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        setTitle("");
+        setTitle("EMI Calculator");
         constraintLayout = findViewById(R.id.constraintLayout);
         constraintLayout.setOnClickListener(this);
         interestSeekBar = findViewById(R.id.interestRateSeekBar);

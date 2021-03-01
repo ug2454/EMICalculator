@@ -10,10 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LegendEntry;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -26,7 +30,6 @@ public class ResultActivity extends AppCompatActivity {
     PieData pieData;
     PieDataSet pieDataSet;
     ArrayList pieEntries;
-
 
 
     @Override
@@ -49,6 +52,7 @@ public class ResultActivity extends AppCompatActivity {
         String[] interest1 = interest.split("\\.");
         String totalPayment = india.format((int) intent.getFloatExtra("totalAmount", 0));
         String[] totalPayment1 = totalPayment.split("\\.");
+
 
 //
 //        pieChart.addPieSlice(
@@ -81,9 +85,12 @@ public class ResultActivity extends AppCompatActivity {
         pieDataSet.setValueTextColor(Color.BLACK);
         pieDataSet.setValueTextSize(10f);
         pieDataSet.setSliceSpace(5f);
-        pieChart.getDescription().setText("LOAN PAYMENT CHART");
-        pieChart.getDescription().setTextColor(Color.YELLOW);
-        pieChart.getDescription().setTextSize(12);
+        pieDataSet.setValueFormatter(new IValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                return india.format((int)value).split("\\.")[0];
+            }
+        });
         pieChart.setCenterText(totalPayment1[0]);
         Legend legend = pieChart.getLegend();
         legend.setEnabled(true);

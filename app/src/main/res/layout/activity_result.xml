@@ -144,7 +144,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginTop="40dp"
-                android:background="@color/grey"
+                android:background="?android:attr/background"
                 android:elevation="10dp"
 
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -166,7 +166,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@color/grey"
+                        android:background="?android:attr/background"
 
 
                         />
