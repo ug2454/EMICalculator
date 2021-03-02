@@ -5,7 +5,7 @@
 
 An EMI Calculator app to calculate EMI of any loan amount and showing the results with a beautiful animated pie chart.
 
-![Finished App](https://cdn.discordapp.com/attachments/283947045163630593/816212479779536956/20210302_130635.gif)
+![Finished App](https://cdn.discordapp.com/attachments/283947045163630593/816215351213162556/20210302_131803.gif)
 
 ---
 
